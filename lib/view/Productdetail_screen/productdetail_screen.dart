@@ -22,7 +22,7 @@ class ProductdetailScreen extends StatelessWidget {
                           fit: BoxFit.cover)),
                 ),
                 Positioned(
-                  top: 5,
+                  top: 6,
                   left: 5,
                   child: Container(
                     height: 36,
