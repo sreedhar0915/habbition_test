@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard({super.key});
+  final String productimage;
+  final String productname;
+  final String productdetails;
+  final String productprice;
+  const ProductCard(
+      {super.key,
+      required this.productname,
+      required this.productimage,
+      required this.productdetails,
+      required this.productprice});
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +25,14 @@ class ProductCard extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 20),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Stack(children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: Image.asset(
-                "Assets/Images/Rectangle 485.png",
+            Container(
+              height: 150,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Image.network(
+                productimage,
                 height: 150,
                 width: double.infinity,
                 fit: BoxFit.contain,
@@ -36,12 +49,14 @@ class ProductCard extends StatelessWidget {
                     )))
           ]),
           Text(
-            "BP Monitor",
+            productname,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
           ),
           SizedBox(height: 5),
           Text(
-            "Accurate and easy-to-use digital blood pressure......",
+            productdetails,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(fontSize: 12, fontWeight: FontWeight.w300),
@@ -50,25 +65,22 @@ class ProductCard extends StatelessWidget {
           Row(
             children: [
               Text(
-                "₹ 3,500",
+                "₹ ${productprice}",
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
               ),
               Spacer(),
               Container(
-                height: 29,
-                width: 33.83,
-                decoration: BoxDecoration(
-                    color: Colors.grey,
-                    borderRadius: BorderRadius.circular(10)),
-                child: IconButton(
-                    onPressed: () {},
-                    icon: Center(
-                      child: Icon(
-                        Icons.add,
-                        color: Colors.white,
-                      ),
-                    )),
-              )
+                  height: 29,
+                  width: 33.83,
+                  decoration: BoxDecoration(
+                      color: Colors.grey,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Center(
+                    child: Icon(
+                      Icons.add,
+                      color: Colors.white,
+                    ),
+                  ))
             ],
           ),
         ]),

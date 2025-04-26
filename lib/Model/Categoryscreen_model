@@ -1,0 +1,45 @@
+// To parse this JSON data, do
+//
+//     final categoryscreenmodel = categoryscreenmodelFromJson(jsonString);
+
+import 'dart:convert';
+
+List<Categoryscreenmodel> categoryscreenmodelFromJson(String str) => List<Categoryscreenmodel>.from(json.decode(str).map((x) => Categoryscreenmodel.fromJson(x)));
+
+String categoryscreenmodelToJson(List<Categoryscreenmodel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+
+class Categoryscreenmodel {
+    int? id;
+    String? name;
+    String? slug;
+    String? image;
+    DateTime? creationAt;
+    DateTime? updatedAt;
+
+    Categoryscreenmodel({
+        this.id,
+        this.name,
+        this.slug,
+        this.image,
+        this.creationAt,
+        this.updatedAt,
+    });
+
+    factory Categoryscreenmodel.fromJson(Map<String, dynamic> json) => Categoryscreenmodel(
+        id: json["id"],
+        name: json["name"],
+        slug: json["slug"],
+        image: json["image"],
+        creationAt: json["creationAt"] == null ? null : DateTime.parse(json["creationAt"]),
+        updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
+    );
+
+    Map<String, dynamic> toJson() => {
+        "id": id,
+        "name": name,
+        "slug": slug,
+        "image": image,
+        "creationAt": creationAt?.toIso8601String(),
+        "updatedAt": updatedAt?.toIso8601String(),
+    };
+}

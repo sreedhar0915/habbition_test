@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:habbition_test/view/Category_screen/Category_screen.dart';
+import 'package:habbition_test/Controller/Categoryscreen_controller.dart';
+import 'package:habbition_test/Controller/Homescreen_controller.dart';
+import 'package:habbition_test/view/Bottomnavibar_screen/Bottomnavibar_screen.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (context) => HomescreenController()),
+    ChangeNotifierProvider(create: (context) => CategoryscreenController()),
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -12,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: CategoryScreen(),
+      home: Bottomnavibarscreen(),
     );
   }
 }
